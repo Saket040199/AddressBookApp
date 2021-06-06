@@ -1,3 +1,6 @@
+let isUpdate = false;
+let addressBookObj = {};
+
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.error-text-output');
@@ -43,6 +46,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             zipErr.textContent = e;
         }
     });
+    checkForUpdate();
 });
 
 const save = () => {
@@ -100,5 +104,38 @@ function createAndupdateStorage(addressBookData) {
     }
     alert("Local Contact Details: "+addressBookList.toString());
     localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
+}
+
+const checkForUpdate = () => {
+    const addressBookJson = localStorage.getItem('editContact');
+    isUpdate = addressBookJson ? true : false;
+    if(!isUpdate) return;
+    addressBookObj = JSON.parse(addressBookJson);
+    setForm();
+}
+
+const setForm = () => {
+    setValue('#name', addressBookObj._name);
+    setValue('#mobile', addressBookObj._phoneNo);
+    setValue('#address', addressBookObj._address);
+    document.querySelector('#city').value = addressBookObj._city;
+    document.querySelector('#state').value = addressBookObj._state;
+    document.querySelector('#zip').value = addressBookObj._zipCode;
+}
+
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+}
+
+const setSelectedValue = (propertyValue, value) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        if(value.includes(item.values)){
+            item.checked = true;
+        }
+        else if (item.value === value)
+        item.checked = true;
+    });
 }
 

@@ -2,6 +2,7 @@ let addressBookList;
 window.addEventListener('DOMContentLoaded', (event) => {
     addressBookList = getAddressBookDataFromStorage();
     createInnerHtml();
+    localStorage.removeItem('editContact');
 });
 
 const getAddressBookDataFromStorage = () => {
@@ -46,3 +47,11 @@ const remove = (node) => {
     createInnerHtml();
     window.location.replace(site_properties.home_page);
 }
+
+const update = (node) => {
+    let addressBookData = addressBookList.find(addData => addData._id == node.id);
+    if(!addressBookData) return;
+    localStorage.setItem('editContact', JSON.stringify(addressBookData));
+    window.location.replace(site_properties.AddressBook_page);
+}
+ 
