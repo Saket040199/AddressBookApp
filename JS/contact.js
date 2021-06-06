@@ -49,6 +49,7 @@ const save = () => {
     try{
     let addressBookData = createAddressBook();
     createAndupdateStorage(addressBookData);
+  //  window.location.replace("../Pages/home.html");
     }catch (e){
         return;
     }
@@ -70,7 +71,7 @@ const createAddressBook = () =>{
     let state = document.querySelector('#state').value;
     addressBookData.state = state;
     addressBookData.zipCode = getInputValueById('#zip');
-    alert("Contact Details: "+addressBookData.toString());
+  //  alert("Contact Details: "+addressBookData.toString());
     return addressBookData;
 }
 
@@ -97,7 +98,7 @@ function createAndupdateStorage(addressBookData) {
     } else {
         addressBookList = [addressBookData];
     }
-    alert("Local Contact Details: "+addressBookList.toString());
+   // alert("Local Contact Details: "+addressBookList.toString());
     localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
 }
 
