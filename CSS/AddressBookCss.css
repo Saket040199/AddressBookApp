@@ -203,6 +203,43 @@ label{
     background-color: grey;
 }
 
+@media only screen and (max-width:1500px){
+    .form{
+        width: 85%;
+        padding: 44px 20px;
+    }
+    .input-abc{
+        max-width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .form{
+        margin-top: 10px;
+    }
+    .button{
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 25px;
+    }
+
+    .form-row-2{
+        min-width: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .submitButton{
+        margin: 0;
+        
+    }
+    .button-content{
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        
+    }
+}
 
 
 
