@@ -43,7 +43,61 @@ window.addEventListener('DOMContentLoaded', (event) => {
             zipErr.textContent = e;
         }
     });
-
-    
-
 });
+
+const save = () => {
+    try{
+    let addressBookData = createAddressBook();
+    createAndupdateStorage(addressBookData);
+    }catch (e){
+        return;
+    }
+}
+
+const createAddressBook = () =>{
+    let addressBookData = new AddressBook();
+    try {
+        addressBookData.name = getInputValueById('#name');
+    } catch (e) {
+        setTextValue('.error-text-output', e);
+        throw e;
+    }
+    addressBookData.id = new Date().getTime() +1;
+    addressBookData.phoneNo = getInputValueById('#mobile');
+    addressBookData.address = getInputValueById('#address');
+    let city = document.querySelector('#city').value;
+    addressBookData.city = city;
+    let state = document.querySelector('#state').value;
+    addressBookData.state = state;
+    addressBookData.zipCode = getInputValueById('#zip');
+    alert("Contact Details: "+addressBookData.toString());
+    return addressBookData;
+}
+
+const getSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    let selItems = [];
+    allItems.forEach(item => {
+        if (item.checked) selItems.push(item.value);
+    });
+    return selItems;
+}
+
+
+const getInputValueById = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
+
+function createAndupdateStorage(addressBookData) {
+    let addressBookList = JSON.parse(localStorage.getItem('AddressBookList'));
+
+    if (addressBookList != undefined) {
+        addressBookList.push(addressBookData);
+    } else {
+        addressBookList = [addressBookData];
+    }
+    alert("Local Contact Details: "+addressBookList.toString());
+    localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
+}
+
