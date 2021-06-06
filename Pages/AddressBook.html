@@ -32,16 +32,16 @@
                 <error-output class="error-text-output" for="text"></error-output>
             </div>
             <div class="form-row">
-                <label class="label text" for="name">Mobile Number</label>
-                <input class="input" type="number" id="name" name="name" placeholder="Your mobile number.." required>
-                <error-output class="error-text-output" for="text"></error-output>
+                <label class="label text" for="mobile">Mobile Number</label>
+                <input class="input" type="number" id="mobile" name="mobile" placeholder="Your mobile number.." required>
+                <error-output class="error-mobile-output" for="number"></error-output>
             </div>
             <div class="form-row">
-                <label class="label text" for="name">Address</label>
-                <input class="input-address" type="text" id="name" name="name" placeholder="Your full address.."
+                <label class="label text" for="address">Address</label>
+                <input class="input-address" type="text" id="address" name="address" placeholder="Your full address.."
                     required>
 
-                <error-output class="error-text-output" for="text"></error-output>
+                <error-output class="error-address-output" for="text"></error-output>
             </div>
             <div class="form-row-2">
                 <span class="city">
@@ -103,6 +103,7 @@
                 <span class="zip">
                     <label class="label text" for="zip">Zip Code</label>
                     <input class="input-abc" type="number" id="zip" name="zip" placeholder="Your zip" required>
+                    <error-output class="error-zip-output" for="number"></error-output>
                 </span>
             </div>
             <div class="button-content">
@@ -110,6 +111,8 @@
                     <button type="submit" class="button submitButton"  id="submitButton">Add</button>  
             </div>
         </form>
+    </div>
 </body>
-
+<script src="../JS/AddressBook.js"></script>
+<script src="../JS/contact.js"></script>
 </html>
