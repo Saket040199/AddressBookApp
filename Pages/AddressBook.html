@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Address Book App</title>
     <link rel="stylesheet" href="../CSS/AddressBookCss.css">
+    <script src="/JS/contact.js"></script>
+    <script src="/JS/AddressBook.js"></script>
+    <script src="/JS/site_properties.js"></script>
 </head>
 
 <body>
@@ -21,7 +24,7 @@
         </div>
     </header>
     <div class="form-content">
-        <form class="form" action="#" onsubmit="save()" onreset="resetForm()">
+        <form class="form" action="#" onsubmit="save(event)" onreset="resetForm()">
             <div class="form-head">
                 Person Address Form
                 <a href="../Pages/home.html">
@@ -114,7 +117,5 @@
         </form>
     </div>
 </body>
-<script src="../JS/AddressBook.js"></script>
-<script src="../JS/contact.js"></script>
-<script src="../JS/site_properties.js"></script>
+
 </html>
