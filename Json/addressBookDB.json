@@ -1,15 +1,6 @@
 {
   "addressBook": [
     {
-      "id": 2,
-      "_name": "Saket jain",
-      "_address": "purana panna naka",
-      "_city": "Delhi",
-      "_state": "Madhya Pradesh",
-      "_zipCode": "471001",
-      "_phoneNo": "7987469952"
-    },
-    {
       "_name": "Tanya Kansal",
       "_phoneNo": "7894561235",
       "_address": "dyuhvaudvhulidlhvurhvui",

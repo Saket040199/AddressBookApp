@@ -141,3 +141,19 @@ td:first-child{
     align-items: center;
 }
 
+@media only screen and (max-width: 500px){
+    .header-data{
+        font-size : 14px;
+        width:80%
+    }
+    .header-add{
+        font-size: 14px;
+        width: 80%;
+        height: 60%;
+    }
+    span.add{
+        display: content;
+        width :80%;
+    }
+}
+

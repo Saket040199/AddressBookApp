@@ -67,7 +67,7 @@ const remove = (node) => {
     createInnerHtml();
     window.location.replace(site_properties.home_page);
     } else {
-        const deleteURl = site_properties.server_url + addressBookList.id.toString();
+        const deleteURl = site_properties.server_url + addressBookData.id.toString();
         makeServiceCall("DELETE", deleteURl, false)
             .then(responseText => {
                 createInnerHtml();
