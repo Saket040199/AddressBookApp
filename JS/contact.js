@@ -54,13 +54,34 @@ const save = (event) => {
     event.stopPropagation();
     try {
         setAddressBookObject();
+        if(site_properties.use_local_storage.match("true")){
         createAndupdateStorage();
         resetForm();
         window.location.replace(site_properties.home_page);
+        }else {
+            createOrUpdateAddressBook();
+        }
     } catch (e) {
         return;
     }
     //alert(addressBookObj.toString());
+}
+
+const createOrUpdateAddressBook = () => {
+    let postURL = site_properties.server_url;
+    let methodCall = "POST";
+    if(isUpdate) {
+        methodCall = "PUT";
+        postURL = postURL + addressBookObj.id.toString();
+    }
+    makeServiceCall(methodCall, postURL, true, addressBookObj)
+        .then(responseText => {
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        })
+        .catch(error => {
+            throw error;
+        });
 }
 
 const setAddressBookObject = () => {
