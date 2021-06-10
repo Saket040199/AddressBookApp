@@ -1,13 +1,32 @@
 let addressBookList;
 window.addEventListener('DOMContentLoaded', (event) => {
-    addressBookList = getAddressBookDataFromStorage();
-    createInnerHtml();
-    localStorage.removeItem('editContact');
+    if(site_properties.use_local_storage.match("true")){
+        getAddressBookDataFromStorage();
+    }else getAddressBookDataFromServer();    
 });
 
 const getAddressBookDataFromStorage = () => {
-    return localStorage.getItem('AddressBookList') ?
+    addressBookList =  localStorage.getItem('AddressBookList') ?
                         JSON.parse(localStorage.getItem('AddressBookList')) : [];
+    processAddressBookDataResponse();
+}
+
+const processAddressBookDataResponse = () => {
+    createInnerHtml();
+    localStorage.removeItem('editContact');
+}
+
+const getAddressBookDataFromServer = () => {
+    makeServiceCall("GET", site_properties.server_url, true)
+       .then(responseText => {
+           addressBookList = JSON.parse(responseText);
+           processAddressBookDataResponse();
+       })
+       .catch(error => {
+           console.log("GET Error Status: "+ JSON.stringify(error));
+           addressBookList = [];
+           processAddressBookDataResponse();
+       });
 }
 
 const createInnerHtml = () => {
@@ -25,9 +44,9 @@ const createInnerHtml = () => {
      <td>${addressBookData._zipCode}</td>
      <td>${addressBookData._phoneNo}</td>
      <td>
-     <img id="${addressBookData._id}" onclick="remove(this)" alt="delete"
+     <img id="${addressBookData.id}" onclick="remove(this)" alt="delete"
      src="../Assets/outline_remove_circle_black_24dp.png">
-     <img id="${addressBookData._id}" alt="edit" onclick="update(this)"
+     <img id="${addressBookData.id}" alt="edit" onclick="update(this)"
      src="../Assets/outline_edit_black_24dp.png">
      </td>
      </tr>
@@ -37,11 +56,11 @@ const createInnerHtml = () => {
 }
 
 const remove = (node) => {
-    let addressBookData = addressBookList.find(addData => addData._id == node.id);
+    let addressBookData = addressBookList.find(addData => addData.id == node.id);
     if(!addressBookData) return;
     const index = addressBookList
-                  .map(addData => addData._id)
-                  .indexOf(addressBookData._id);
+                  .map(addData => addData.id)
+                  .indexOf(addressBookData.id);
     addressBookList.splice(index, 1);
     localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
     createInnerHtml();
@@ -49,7 +68,7 @@ const remove = (node) => {
 }
 
 const update = (node) => {
-    let addressBookData = addressBookList.find(addData => addData._id == node.id);
+    let addressBookData = addressBookList.find(addData => addData.id == node.id);
     if(!addressBookData) return;
     localStorage.setItem('editContact', JSON.stringify(addressBookData));
     window.location.replace(site_properties.AddressBook_page);

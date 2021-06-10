@@ -112,13 +112,13 @@ label{
     display: flex;
     justify-content: left;
     font-size: 16px;
-    color: #42515f;
+    color :gray;
     opacity: 1;
     font-family: Roboto;
 }
 
 .input{
-    background-color: rgb(211, 211, 211);
+    background-color: whitesmoke;
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -127,7 +127,7 @@ label{
 }
 
 .input-address{
-    background-color: rgb(211, 211, 211);
+    background-color: whitesmoke;
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -144,7 +144,7 @@ label{
 }
 
 .input-abc{
-    background-color: rgb(211, 211, 211);
+    background-color: whitesmoke;
     width: 95%;
     padding: 12px;
     border: 1px solid #ccc;
