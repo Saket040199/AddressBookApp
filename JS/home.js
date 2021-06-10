@@ -62,9 +62,20 @@ const remove = (node) => {
                   .map(addData => addData.id)
                   .indexOf(addressBookData.id);
     addressBookList.splice(index, 1);
+    if(site_properties.use_local_storage.match("true")) {
     localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
     createInnerHtml();
     window.location.replace(site_properties.home_page);
+    } else {
+        const deleteURl = site_properties.server_url + addressBookList.id.toString();
+        makeServiceCall("DELETE", deleteURl, false)
+            .then(responseText => {
+                createInnerHtml();
+            })
+            .catch(error => {
+                console.log("DELETE Error Status: "+ JSON.stringify(error));
+            });
+    }
 }
 
 const update = (node) => {
