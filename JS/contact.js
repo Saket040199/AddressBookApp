@@ -65,7 +65,6 @@ const save = (event) => {
 
 const setAddressBookObject = () => {
     try {
-        
         addressBookObj._name = document.querySelector('#name').value;
         addressBookObj._phoneNo = document.querySelector('#mobile').value;
         addressBookObj._address = document.querySelector('#address').value;
