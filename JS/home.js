@@ -45,7 +45,7 @@ const createInnerHtml = () => {
      <td>${addressBookData._phoneNo}</td>
      <td>
      <img id="${addressBookData.id}" onclick="remove(this)" alt="delete"
-     src="../Assets/outline_remove_circle_black_24dp.png">
+     src="../Assets/remove.svg">
      <img id="${addressBookData.id}" alt="edit" onclick="update(this)"
      src="../Assets/outline_edit_black_24dp.png">
      </td>
